@@ -1,9 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-for count in range(1,8):
+#fig = plt.figure()
+plt.figure(1)
+for count in range(1,5):
 	hit=0
 	x=10**count
+	plt.subplot(2,2,count)
 	randomx = np.random.uniform(-1,1,size=x)
 	randomy = np.random.uniform(-1,1,size=x)
 	#plt.axis([-1,1,-1,1])
@@ -11,15 +14,14 @@ for count in range(1,8):
 	for i in range(0,10**count):
 		if (randomx[i]**2 + randomy[i]**2 <= 1):
 			hit=hit+1;
-			#plt.plot(randomx[i],randomy[i],'bo')
+			plt.plot(randomx[i],randomy[i],'bo')
 		else:
-			#plt.plot(randomx[i],randomy[i],'ro')
-			y=x
+			plt.plot(randomx[i],randomy[i],'ro')
 
 	pi = 4.0*hit/x
 	#plt.title('number of points: pi value: %.3f' %pi)
-	#plt.show()
 	print(pi)
+plt.show()
 
 
 for count in range(1,8):
