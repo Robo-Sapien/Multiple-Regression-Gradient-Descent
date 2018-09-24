@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #fig = plt.figure()
-plt.figure(1)
+#plt.figure(1)
 for count in range(1,8):
 	hit=0
 	x=10**count
@@ -20,7 +20,7 @@ for count in range(1,8):
 	#circley = np.array(1)
 	#outx = np.array(1)
 	#outy = np.array(1)
-	#plt.axis([-1,1,-1,1])
+	plt.axis([-1,1,-1,1])
 	'''
 	for i in range(0,10**count):
 		if (powersum[i] <= 1):
@@ -36,6 +36,7 @@ for count in range(1,8):
 	'''
 	plt.plot(circlex,circley,'bo')
 	plt.plot(outx,outy,'ro')
+	#plt.show()
 
 		
 
