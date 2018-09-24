@@ -17,15 +17,15 @@ for count in range(1,8):
 	spherex = randomx[np.nonzero(powersum<=1)]
 	spherey = randomy[np.nonzero(powersum<=1)]
 	spherez = randomz[np.nonzero(powersum<=1)]
-	ax.scatter3D(spherex,spherey,spherez,c='b',cmap='Greens')
+	ax.scatter3D(spherex,spherey,spherez,c='b',marker='o')
 	
 	outx = randomx[np.nonzero(powersum>1)]
 	outy = randomy[np.nonzero(powersum>1)]
 	outz = randomz[np.nonzero(powersum>1)]
-	ax.scatter3D(outx,outy,outz,c='r',cmap='Greens')
+	ax.scatter3D(outx,outy,outz,c='r',marker='o')
 	plt.show()
 	pi = 6.0*hit/x
 	#plt.title('number of points: pi value: %.3f' %pi)
-	#plt.show()
+	#plt.shhow()
 	print(pi)
 #plt.show()
