@@ -16,6 +16,8 @@ for count in range(1,8):
 	plt.axis([-1,1,-1,1])
 	powersum = np.power(randomx,2)+np.power(randomy,2)
 	hit=np.count_nonzero(powersum<=1)
+	pi = 4.0*hit/N
+
 	circlex = randomx[np.nonzero(powersum<=1)]
 	circley = randomy[np.nonzero(powersum<=1)]
 
@@ -23,7 +25,7 @@ for count in range(1,8):
 	outy = randomy[np.nonzero(powersum>1)]
 	#plt.plot(circlex,circley,'bo')
 	#plt.plot(outx,outy,'ro')	
-	pi = 4.0*hit/N
+	
 	plt.title(r'N: $10^%i$ pi : %f' %(count,pi))
 
 	print('for n = %i, approx pi = %f' %(N,pi))
@@ -42,6 +44,8 @@ for count in range(1,8):
 	#plt.axis([-1,1,-1,1])
 	powersum = np.power(randomx,2)+np.power(randomy,2)+np.power(randomz,2)
 	hit=np.count_nonzero(powersum<=1)
+	pi = 6.0*hit/N
+
 	spherex = randomx[np.nonzero(powersum<=1)]
 	spherey = randomy[np.nonzero(powersum<=1)]
 	spherez = randomz[np.nonzero(powersum<=1)]
@@ -51,8 +55,7 @@ for count in range(1,8):
 	outz = randomz[np.nonzero(powersum>1)]
 	#ax.scatter3D(spherex,spherey,spherez,c='b',marker='o')
 	#ax.scatter3D(outx,outy,outz,c='r',marker='o')
-
-	pi = 6.0*hit/N
+	
 	plt.title(r'N: $10^%i$ pi : %f' %(count,pi))
 	print('for n = %i, approx pi = %f' %(N,pi))
 	#plt.show()
