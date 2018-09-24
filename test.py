@@ -1,3 +1,4 @@
+from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -6,42 +7,25 @@ import numpy as np
 for count in range(1,8):
 	hit=0
 	x=10**count
-	plt.subplot(2,4,count)
+	ax=plt.axes(projection='3d')
 	randomx = np.random.uniform(-1,1,size=x)
 	randomy = np.random.uniform(-1,1,size=x)
-	powersum = np.power(randomx,2)+np.power(randomy,2)
-	hit2=np.count_nonzero(powersum<=1)
-	circlex = randomx[np.nonzero(powersum<=1)]
-	circley = randomy[np.nonzero(powersum<=1)]
+	randomz = np.random.uniform(-1,1,size=x)
+	#plt.axis([-1,1,-1,1])
+	powersum = np.power(randomx,2)+np.power(randomy,2)+np.power(randomz,2)
+	hit=np.count_nonzero(powersum<=1)
+	spherex = randomx[np.nonzero(powersum<=1)]
+	spherey = randomy[np.nonzero(powersum<=1)]
+	spherez = randomz[np.nonzero(powersum<=1)]
+	ax.scatter3D(spherex,spherey,spherez,c='b',cmap='Greens')
+	
 	outx = randomx[np.nonzero(powersum>1)]
 	outy = randomy[np.nonzero(powersum>1)]
-	#print(circlex)
-	#circlex = np.array(1)
-	#circley = np.array(1)
-	#outx = np.array(1)
-	#outy = np.array(1)
-	plt.axis([-1,1,-1,1])
-	'''
-	for i in range(0,10**count):
-		if (powersum[i] <= 1):
-			hit=hit+1;
-			#plt.plot(randomx[i],randomy[i],'bo')
-			circlex = np.append(circlex,randomx[i])
-			circley = np.append(circley,randomy[i])
-
-		else:
-			#plt.plot(randomx[i],randomy[i],'ro')
-			outx=np.append(outx,randomx[i])
-			outy=np.append(outy,randomy[i])
-	'''
-	plt.plot(circlex,circley,'bo')
-	plt.plot(outx,outy,'ro')
-	#plt.show()
-
-		
-
-	
+	outz = randomz[np.nonzero(powersum>1)]
+	ax.scatter3D(outx,outy,outz,c='r',cmap='Greens')
+	plt.show()
+	pi = 6.0*hit/x
 	#plt.title('number of points: pi value: %.3f' %pi)
-	pi = 4.0*hit2/x
+	#plt.show()
 	print(pi)
-plt.show()
+#plt.show()
