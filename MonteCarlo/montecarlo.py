@@ -31,7 +31,7 @@ def circle_2D():
 		
 		plt.title(r'N: $10^%i$ pi : %f' %(count,pi))
 		print('for n = %i, approx pi = %f' %(N,pi))
-	plt.show()
+	#plt.show()
 
 
 def sphere_3D():
