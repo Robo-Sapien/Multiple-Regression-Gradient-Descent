@@ -17,6 +17,7 @@ def circle_2D():
 		powersum = np.power(randomx,2)+np.power(randomy,2) #condition for any point to be inside the circle
 		hit=np.count_nonzero(powersum<=1) #Number of points inside the circle
 		pi = 4.0*hit/N #Estimating pi by equating area probabilty with empirical probabilty
+		print('for n = %i, approx pi = %f' %(N,pi))
 
 		#Points inside the circle
 		circlex = randomx[np.nonzero(powersum<=1)]
@@ -30,7 +31,7 @@ def circle_2D():
 		plt.plot(outx,outy,'ro')	
 		
 		plt.title(r'N: $10^%i$ pi : %f' %(count,pi))
-		print('for n = %i, approx pi = %f' %(N,pi))
+		
 	#plt.show()
 
 
@@ -50,6 +51,7 @@ def sphere_3D():
 		powersum = np.power(randomx,2)+np.power(randomy,2)+np.power(randomz,2) #condition for any point to be inside the sphere
 		hit=np.count_nonzero(powersum<=1) #Number of points inside the sphere
 		pi = 6.0*hit/N #Estimating pi by equating volume probabilty with empirical probabilty
+		print('for n = %i, approx pi = %f' %(N,pi))
 
 		#Points inside the sphere
 		spherex = randomx[np.nonzero(powersum<=1)]
@@ -64,7 +66,7 @@ def sphere_3D():
 		ax.scatter3D(outx,outy,outz,c='r',marker='o')
 		
 		plt.title(r'N: $10^%i$ pi : %f' %(count,pi))
-		print('for n = %i, approx pi = %f' %(N,pi))
+		
 		
 	plt.show()
 
