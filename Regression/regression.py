@@ -125,7 +125,7 @@ class Regression:
 			curr_error = self.error_estimation(output_val,1)
 			initial_parameters = parameters
 
-			if abs(curr_error - prev_error) < 10**(-3) or abs(curr_error - prev_error) > 10**(3):
+			if abs(curr_error - prev_error) < 10**(-3) or abs(curr_error - prev_error) > 10**(6):
 				prev_error = curr_error
 				break
 
@@ -170,12 +170,16 @@ class Regression:
 			for k in range(0,5):
 				parameters[k] = parameters[k] - np.sum(((learning_rate/num)*(prediction - self.y_train)*self.x_train[:,k])) - ((learning_rate/num)*(reg_coeff)*parameters[k])
 				
+
 			initial_parameters = parameters
 			
+			reg_error = (learning_rate/num)*reg_coeff*np.sum(np.square(parameters))
 			output_val = np.matmul(parameters,self.x_test.transpose())						
-			curr_error = self.error_estimation(output_val,1)
+			curr_error = self.error_estimation(output_val,1) + reg_error
+			
+			#print(reg_error)
 
-			if abs(curr_error - prev_error) < 10**(-4) or abs(curr_error - prev_error) > 10**(3):
+			if abs(curr_error - prev_error) < 10**(-4) or abs(curr_error - prev_error) > 10**(6):
 				prev_error = curr_error
 				break
 
@@ -213,10 +217,11 @@ class Regression:
 				
 			initial_parameters = parameters
 			
+			reg_error = (learning_rate/num)*reg_coeff*np.sum(abs(parameters))
 			output_val = np.matmul(parameters,self.x_test.transpose())
-			curr_error = self.error_estimation(output_val,1)
+			curr_error = self.error_estimation(output_val,1) + reg_error
 
-			if abs(curr_error - prev_error) < 10**(-4) or abs(curr_error - prev_error) > 10**(3):
+			if abs(curr_error - prev_error) < 10**(-4) or abs(curr_error - prev_error) > 10**(6):
 				prev_error = curr_error
 				break
 
@@ -244,7 +249,6 @@ class Regression:
 			num = self.y_train.shape[0]
 		else:
 			num = self.y_validate.shape[0]
-		
 
 		error = 0
 
@@ -260,9 +264,9 @@ class Regression:
 
 		#print(error)
 
-		error = math.sqrt(error)
-		error = error/num
-
+		error = 0.5*(error/num)
+		#error = error/num
+		#print(num)
 		# print(error)
 
 		return error
@@ -335,8 +339,8 @@ class Regression:
 
 if __name__ == '__main__':
 
-	file_addr = "/home/nikhil/foundations/assgn3/dataset/Folds5x2_pp.xlsx"
-	reg = Regression(file_addr,0.70,0.1)
+	file_addr = "dataset/Folds5x2_pp.xlsx"
+	reg = Regression(file_addr,0.70,0.091)
 	reg.feature_scaling()
 	error = reg.normal_equation()
 	print("normal_equation error =>" + str(error))
